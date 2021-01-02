@@ -1,3 +1,4 @@
+mod archive;
 #[path = "result/result.rs"]
 mod result;
 mod utils;
@@ -12,4 +13,6 @@ fn cast_string() {
 fn main() {
     result::test_result3();
     utils::nested::func();
+    archive::my_vec::test_vec();
+    archive::impl_iterator::test_my_iter();
 }
