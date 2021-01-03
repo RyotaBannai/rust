@@ -29,7 +29,16 @@ fn func(code: i32) -> Result<i32, String> {
   println!("code: {}", code);
   Ok(100)
 }
+
 fn func_main() {
   let result: Result<i32, String> = Ok(200);
-  let next_result = result.and_then(func); // func は実行される
+  let _next_result = result.and_then(func); // func は実行される
+}
+
+#[allow(dead_code)]
+fn list_dead_codes() {
+  func_main();
+  test_result();
+  test_result2();
+  test_result3();
 }

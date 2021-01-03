@@ -21,11 +21,18 @@ fn use_traited_struct() {
         bird.tweet();
     }
 }
-fn main() {
-    // result::test_result3();
-    // utils::nested::func();
-    // archive::my_vec::test_vec();
-    // archive::impl_iterator::test_my_iter();
-    // use_traited_struct();
+
+// https://stackoverflow.com/questions/32900809/how-to-suppress-function-is-never-used-warning-for-a-function-used-by-tests
+#[allow(dead_code)]
+fn list_dead_codes() {
+    cast_string();
+    utils::nested::func();
+    archive::my_vec::test_vec();
+    archive::impl_iterator::test_my_iter();
+    use_traited_struct();
     archive::my_trait::my_drop::use_droppable();
+}
+
+fn main() {
+    archive::multi_thread::make_spawn::make_spawn();
 }
