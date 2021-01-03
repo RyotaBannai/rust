@@ -3,3 +3,6 @@ name = "project"
 version = "0.1.0"
 authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
 edition = "2018"
+
+[dependencies]
+futures = "0.3.8"

@@ -2,10 +2,11 @@ mod archive;
 #[path = "result/result.rs"]
 mod result;
 mod utils;
-use archive::multi_thread::make_spawn::make_spawn;
-use archive::multi_thread::msg_passing::msg_passing;
-use archive::multi_thread::share_memory::share_memory;
+use archive::multi_thread::{
+    make_spawn::make_spawn, msg_passing::msg_passing, share_memory::share_memory,
+};
 use archive::my_trait::birds::Tweet;
+use archive::test_future::test_future::experiment;
 
 fn cast_string() {
     let s1: String = String::from("Hello world");
@@ -36,8 +37,9 @@ fn list_dead_codes() {
     archive::my_trait::my_drop::use_droppable();
     make_spawn();
     share_memory();
+    msg_passing();
 }
 
 fn main() {
-    msg_passing();
+    experiment();
 }

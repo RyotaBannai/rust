@@ -4,3 +4,4 @@ pub mod impl_iterator;
 pub mod multi_thread;
 pub mod my_trait;
 pub mod my_vec;
+pub mod test_future;
