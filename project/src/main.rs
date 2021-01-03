@@ -2,6 +2,8 @@ mod archive;
 #[path = "result/result.rs"]
 mod result;
 mod utils;
+use archive::multi_thread::make_spawn::make_spawn;
+use archive::multi_thread::share_data::share_data;
 use archive::my_trait::birds::Tweet;
 
 fn cast_string() {
@@ -34,5 +36,6 @@ fn list_dead_codes() {
 }
 
 fn main() {
-    archive::multi_thread::make_spawn::make_spawn();
+    make_spawn();
+    share_data();
 }
