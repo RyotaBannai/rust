@@ -2,7 +2,7 @@ mod archive;
 #[path = "result/result.rs"]
 mod result;
 mod utils;
-use archive::birds::Tweet;
+use archive::my_trait::birds::Tweet;
 
 fn cast_string() {
     let s1: String = String::from("Hello world");
@@ -11,8 +11,8 @@ fn cast_string() {
     println!("{}", s3);
 }
 fn use_traited_struct() {
-    let dove = archive::birds::Dove {};
-    let duck = archive::birds::Duck {};
+    let dove = archive::my_trait::birds::Dove {};
+    let duck = archive::my_trait::birds::Duck {};
     dove.tweet_twice();
     dove.shout();
 
@@ -26,5 +26,6 @@ fn main() {
     // utils::nested::func();
     // archive::my_vec::test_vec();
     // archive::impl_iterator::test_my_iter();
-    use_traited_struct();
+    // use_traited_struct();
+    archive::my_trait::my_drop::use_droppable();
 }
