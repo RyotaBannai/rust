@@ -1,7 +1,7 @@
 use std::sync::{Arc, Mutex};
 use std::thread;
 
-pub fn share_data() {
+pub fn share_memory() {
   let mut handles = Vec::new();
   let data = Arc::new(Mutex::new(vec![1; 10]));
 

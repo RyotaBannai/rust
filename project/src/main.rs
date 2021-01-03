@@ -3,7 +3,8 @@ mod archive;
 mod result;
 mod utils;
 use archive::multi_thread::make_spawn::make_spawn;
-use archive::multi_thread::share_data::share_data;
+use archive::multi_thread::msg_passing::msg_passing;
+use archive::multi_thread::share_memory::share_memory;
 use archive::my_trait::birds::Tweet;
 
 fn cast_string() {
@@ -33,9 +34,10 @@ fn list_dead_codes() {
     archive::impl_iterator::test_my_iter();
     use_traited_struct();
     archive::my_trait::my_drop::use_droppable();
+    make_spawn();
+    share_memory();
 }
 
 fn main() {
-    make_spawn();
-    share_data();
+    msg_passing();
 }
