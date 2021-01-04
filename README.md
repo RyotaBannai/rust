@@ -38,7 +38,7 @@ for bird in birds{
   - `Poll::Pending` が返されると `poll()` はまた`他のタスクが実行状態でなくなる`まで呼ばれず、他のタスクを実行する。（他のタスクを処理した後に再度 poll する）
   - `Poll::Ready<T>` が返されるとタスクが実行完了となり、ランタイムは次の実行状態に移る。
   - このポーリングを繰り返しながら実行するランタイムのことを `Executor` と呼ぶ。
-- `async fn => impl Future のシンタックスシュガー`:
+- `async fn => impl Future のシンタックスシュガー`:
 
 ```rust
 async fn some_func(in: i32) -> i32{
@@ -58,16 +58,17 @@ fn some_fund(in: i32) -> impl Future<Output = i32>{
 
 ### ライフタイム
 
-- `dangling pointer: use after free`
+- [Reference](https://doc.rust-lang.org/1.9.0/book/lifetimes.html)
+- `Dangling pointer` => ` use after free`
 
 ```
-I acquire a handle to some kind of resource.
-I lend you a reference to the resource.
-I decide I’m done with the resource, and deallocate it, while you still have your reference.
-You decide to use the resource.
+・I acquire a handle to some kind of resource.
+・I lend you a reference to the resource.
+・I decide I’m done with the resource, and deallocate it, while you still have your reference.
+・You decide to use the resource.
 ```
 
-- Uh oh! Your reference is pointing to an invalid resource. This is called a dangling pointer or ‘use after free’, when the resource is memory. To fix this, we have to make sure that step four never happens after step three. When we have a function that `takes an argument by reference`, we can be implicit or explicit about the lifetime of the reference:
+- Uh oh! Your reference is pointing to an invalid resource. This is called `a dangling pointer` or `use after free`, when the resource is memory. To fix this, we have to make sure that step four never happens after step three. When we have a function that `takes an argument by reference`, we can be implicit or explicit about the lifetime of the reference:
 
 ```rust
 // implicit
@@ -77,7 +78,7 @@ fn func<'a>(x: &'a i32){}
 ```
 
 - The `'a` reads `the lifetime a`. Technically, every reference has some lifetime associated with it, but `the compiler lets you elide` (i.e. omit, see `Lifetime Elision`) them in common cases.
-- If you compare ` &mut i32`` to &'a mut i32 `, they’re the same, it’s that the lifetime 'a has snuck in between the & and the mut i32.
+- If you compare `&mut i32` to `&'a mut i32`, they’re the same, it’s that the lifetime `'a` has snuck in between the `&` and the `mut i32`.
 - We read
 
   - `&mut i32` as `a mutable reference to an i32`, and
