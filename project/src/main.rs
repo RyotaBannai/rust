@@ -6,7 +6,7 @@ use archive::multi_thread::{
     make_spawn::make_spawn, msg_passing::msg_passing, share_memory::share_memory,
 };
 use archive::my_trait::birds::Tweet;
-use archive::test_future::test_future::experiment;
+use archive::test_future::{test_async_await::call_async_funcs, test_future::experiment};
 
 fn cast_string() {
     let s1: String = String::from("Hello world");
@@ -38,8 +38,9 @@ fn list_dead_codes() {
     make_spawn();
     share_memory();
     msg_passing();
+    experiment();
 }
 
 fn main() {
-    experiment();
+    call_async_funcs();
 }
