@@ -86,7 +86,7 @@ fn func<'a>(x: &'a i32){}
 
 #### In structs
 
-- You'll also neeed sxplitic lifetimes when working wiht structs that contains references:
+- You'll also need explicit lifetimes when working with structs that contains references:
 
 ```rust
 struct Foo<'a> {
@@ -114,7 +114,7 @@ fn x_or_y<'a, 'b>(x: &'a str, y: &'b str) -> &'a str{}
 #### 'static
 
 - The lifetime named `static` is a special lifetime: it signals that something has `the lifetime of the entire program`.
-- String literals have the type &'static str because the reference is always alive: they are baked into `the data segment of the final binary`. Another example are globals.
+- String literals have the type `&'static str` because the reference is always alive: they are baked into `the data segment of the final binary`. Another example are globals.
 
 ```rust
 let x: &'static str = "Hello, world.";
@@ -159,6 +159,84 @@ fn args<'a, 'b, T: ToCStr>(&'a mut self, args: &'b [T]) -> &'a mut Command; // e
 
 fn new(buf: &mut [u8]) -> BufWriter; // elided
 fn new<'a>(buf: &'a mut [u8]) -> BufWriter<'a>; // expanded
+```
+
+#### 'static ライフタイム
+
+##### 'static の２つの使用例
+
+###### 1. A reference with 'static lifetime:
+
+```rust
+let s: &'static str = "string";
+```
+
+- As a reference lifetime `'static` indicates that the data pointed to by the reference `lives for the entire lifetime of the running program` -> in other words, the reference to `'static lifetime variable` can no longer be used, but the data remains in the binary. `(1)`
+- `It can still be coerced to a shorter lifetime`. `(2)`
+- There are two ways to make a variable with `'static` lifetime, and both are `stored in the read-only memory of the binary`:
+
+1. make `a constant` with the static declaration
+2. make `a string literal` which has type: `&'static str`
+
+```rust
+// 1. make a constant
+static NUM: i32 = 32;
+// 2. make a string literal
+let static_string = "string"
+```
+
+```rust
+static NUM: i32 = 32;
+fn coerce_staticM<'a>(_:&'a i32) -> &'a i32{
+  &NUM
+}
+
+fn main(){
+  // (1)
+  {
+    let static_string = "string";
+    println!("{}", static_string);
+  }
+  // (2)
+  {
+    let lifetime_num = 9;
+    let coerced_static = coerce_static(&lifetime_num);
+    println!("{}", coerced_static);
+  }
+}
+```
+
+2. 'static as part of `a trait bound`:
+
+```rust
+fn genericM<T>(x: T) where T: 'static{}
+```
+
+###### 2. Trait bound
+
+- As a trait bound, it means `the type does not contain any non-static references`. Eg. the receiver can hold on to the type for as long as they want and it will never become invalid until they drop it.
+
+- It's important to understand this means that any owned data always passes `a 'static lifetime bound`, but a reference to that owned data generally does not(3):
+  (any owned data can pass, but not a reference to an owned data...)
+
+```rust
+use std::fmt::Debug;
+
+fn print_it( input: impl Debug + 'static )
+{
+    println!( "'static value passed in is: {:?}", input );
+}
+
+fn use_it()
+{
+    // i is owned and contains no references, thus it's 'static:
+    let i = 5;
+    print_it(i);
+
+    // oops, &i only has the lifetime defined by the scope of
+    // use_it(), so it's not 'static:
+    print_it(&i); // error 完全に所有権を渡さないといけない. (3)
+}
 ```
 
 ####

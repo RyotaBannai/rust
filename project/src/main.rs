@@ -2,6 +2,7 @@ mod archive;
 #[path = "result/result.rs"]
 mod result;
 mod utils;
+use archive::experiment::test_static::main_fn;
 use archive::multi_thread::{
     make_spawn::make_spawn, msg_passing::msg_passing, share_memory::share_memory,
 };
@@ -39,8 +40,9 @@ fn list_dead_codes() {
     share_memory();
     msg_passing();
     experiment();
+    call_async_funcs();
 }
 
 fn main() {
-    call_async_funcs();
+    main_fn();
 }
