@@ -284,12 +284,23 @@ fn main() {
 }
 ```
 
-#### Bounds
+##### Bounds
 
 - [Reference](https://doc.rust-lang.org/rust-by-example/scope/lifetime/lifetime_bounds.html)
 
 1. `T: 'a` :All references in T must outlive lifetime `'a`
 2. `T: Trait + 'a` :Type `T` must implement trait `Trait` and all references in T must outlive `'a`
+
+##### 型 T に 'static ライフタイム境界をつける場合の意図
+
+- [reference]: (https://laysakura.github.io/2020/05/21/rust-static-lifetime-and-static-bounds/)
+
+- `T には参照を含まない（ T が struct, enum, ベクタなどであった場合にはその中身も参照ではない）ことを要請する` （という使い方が大半. 3 番目のように struct や enum やベクタに 'static ライフタイムな参照を含めたくなるようなケースがあまりない（その場合は値そのものをフィールドにする））
+  もう少し厳密にいうと、 `T: 'static` ならば、
+- `T` がスカラ型の値である。（e.g. `T <- 123`）
+- `T` が`複合型（struct, enum, ベクタ, 配列 など、アクセスできる内部構造を持つ型）の値`であり、その内部構造は参照を持たない。（Eg. `T <- struct S(u32)`, `enum E { V1(u32), V2(i32) }`, `T <- Vec<u32>`）
+- `T` が複合型の値であり、その内部構造に `'static` ライフタイムの参照を含む。（Eg. `T <- struct S(u32, &'static u32)`, `T <- Vec<&'static str>`）
+- `T` が、上記のいずれか値の `'static` ライフタイムの参照である。(Eg. `T <- &'static 123`, `T <- &'static S(u32)`)
 
 ####
 

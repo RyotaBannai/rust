@@ -55,3 +55,25 @@ fn main() {
     println!("{} is the first", choose_first(&first, &second));
   };
 }
+
+// Reference: https://laysakura.github.io/2020/05/21/rust-static-lifetime-and-static-bounds/
+fn i_need_static_bound_type<T: 'static>(v: T) {}
+
+// 参照を含まない
+struct IHaveValue(String);
+
+// 'static ライフタイムの参照だけを含む
+struct IHaveStaticRef(&'static str);
+
+// 'a というライフタイムの参照だけを含む
+struct IHaveNonStaticRef<'a>(&'a str);
+
+fn test_lifetime() {
+  i_need_static_bound_type(IHaveValue("abc".to_string())); // &str -> String
+  i_need_static_bound_type(IHaveStaticRef("abc"));
+  i_need_static_bound_type(IHaveNonStaticRef("abc"));
+
+  // 関数のスコープという 'staic よりも短い lifetime の`参照`を渡しているので以下のパターンはエラー
+  // let local_string: String = format!("abc");
+  // i_need_static_bound_type(IHaveNonStaticRef(&local_string));
+}
