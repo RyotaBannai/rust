@@ -275,6 +275,13 @@ fn main() {
 }
 ```
 
+#### Bounds
+
+- [Reference](https://doc.rust-lang.org/rust-by-example/scope/lifetime/lifetime_bounds.html)
+
+1. `T: 'a` :All references in T must outlive lifetime `'a`
+2. `T: Trait + 'a` :Type `T` must implement trait `Trait` and all references in T must outlive `'a`
+
 ####
 
 - 通常の`非 static な`ライフタイムであれば、async 内におけるライフタイムはほとんど問題にならない.
