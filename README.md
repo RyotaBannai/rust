@@ -178,6 +178,15 @@ let s: &'static str = "string";
 - There are two ways to make a variable with `'static` lifetime, and both are `stored in the read-only memory of the binary`:
 
 1. make `a constant` with the static declaration
+
+- There are `two different types of constants` which `can be declared in any scope including global`.
+
+1. `const`: An unchangeable value(the common case)
+2. `static`: A possibly `mut` able variable with `'static` lifetime.
+
+- the static lifetime is inferred and does not have to be specified.
+- Accessing or modifying a mutable static variable is `unsafe`.
+
 2. make `a string literal` which has type: `&'static str`
 
 ```rust

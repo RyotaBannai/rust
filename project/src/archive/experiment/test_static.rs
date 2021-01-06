@@ -1,4 +1,6 @@
 static NUM: i32 = 32;
+const ROOT: &str = "Rust";
+
 fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
   &NUM
 }
