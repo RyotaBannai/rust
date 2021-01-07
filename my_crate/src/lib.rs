@@ -5,3 +5,6 @@ mod tests {
         assert_eq!(2 + 2, 4);
     }
 }
+
+pub mod module_a; // 有効化
+mod module_b;
