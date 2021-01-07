@@ -73,7 +73,21 @@ fn test_lifetime() {
   i_need_static_bound_type(IHaveStaticRef("abc"));
   i_need_static_bound_type(IHaveNonStaticRef("abc"));
 
-  // 関数のスコープという 'staic よりも短い lifetime の`参照`を渡しているので以下のパターンはエラー
+  // 関数のスコープという 'static よりも短い lifetime の`参照`を渡しているので以下のパターンはエラー
   // let local_string: String = format!("abc");
   // i_need_static_bound_type(IHaveNonStaticRef(&local_string));
 }
+
+async fn some_great_afn() {
+  let local_string: String = "abc".to_string();
+  some_great_afn_with_borrowing(local_string).await;
+}
+
+async fn some_great_afn_with_borrowing(x: String) {}
+
+fn some_great_fn() {
+  let local_string: String = "abc".to_string();
+  some_great_afn_with_borrowing(local_string);
+}
+
+fn some_great_fn_with_borrowing(x: String) {}
