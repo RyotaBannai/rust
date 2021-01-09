@@ -4,6 +4,8 @@ use clap::Clap;
 use std::fs::File;
 use std::io::{stdin, BufRead, BufReader};
 
+use std::path::PathBuf;
+
 // command:
 // cargo run -- ./src/input.txt -v
 // cargo run --bin rpn -- ./src/input.txt -v
@@ -21,7 +23,7 @@ struct Opts {
 
     /// Formulas written in RPN
     #[clap(name = "FILE")]
-    formula_file: Option<String>,
+    formula_file: Option<PathBuf>, // OS に依存しない汎用的なファイルパスにする
 }
 
 fn main() {

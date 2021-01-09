@@ -1,6 +1,12 @@
 # rust
 
-The playground for Rust
+### About
+
+- The playground for Rust
+
+### Project を実行パスへインストール
+
+- `cargo install --path .`
 
 ### Different between Eq and PartialEq
 
