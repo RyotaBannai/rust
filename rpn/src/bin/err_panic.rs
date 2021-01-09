@@ -9,7 +9,7 @@ impl fmt::Display for MyErrors {
   fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
     match self {
       MyErrors::Io(cause) => write!(f, "I/O Error: {}", cause),
-      MyErrors::IntParse(cause) => write!(f, "I/O Error: {}", cause),
+      MyErrors::IntParse(cause) => write!(f, "IntParse Error: {}", cause),
     }
   }
 }
