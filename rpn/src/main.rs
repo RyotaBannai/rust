@@ -90,3 +90,31 @@ impl RpnCalculator {
         }
     }
 }
+
+// #[..] の部分はアトリビュートと呼ばれる
+// cgf(test) -> test subcommand の時だけ有効化される
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // #[test] こちらも同様アトリビュート 単体テストと認識させるためのアトリビュート
+    #[test]
+    fn test_ok() {
+        let calc = RpnCalculator::new(false);
+        assert_eq!(calc.eval("5"), 5);
+        assert_eq!(calc.eval("-5"), -5);
+        assert_eq!(calc.eval("2 3 +"), 5);
+        assert_eq!(calc.eval("2 3 -"), -1);
+        assert_eq!(calc.eval("2 3 *"), 6);
+        assert_eq!(calc.eval("2 3 /"), 0);
+        assert_eq!(calc.eval("2 3 %"), 2);
+        assert_eq!(calc.eval("1 2 + 3 4 + *"), 21);
+        assert_eq!(calc.eval("1 2 * -3 * -6 %"), 0);
+    }
+    #[test]
+    #[should_panic]
+    fn test_ng() {
+        let calc = RpnCalculator::new(false);
+        assert_eq!(calc.eval("3 3 ^"), 27);
+    }
+}

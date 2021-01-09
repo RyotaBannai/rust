@@ -293,7 +293,7 @@ fn main() {
 
 ##### 型 T に 'static ライフタイム境界をつける場合の意図
 
-- [reference]: (https://laysakura.github.io/2020/05/21/rust-static-lifetime-and-static-bounds/)
+- [reference](https://laysakura.github.io/2020/05/21/rust-static-lifetime-and-static-bounds/)
 
 - `T には参照を含まない（ T が struct, enum, ベクタなどであった場合にはその中身も参照ではない）ことを要請する` （という使い方が大半. 3 番目のように struct や enum やベクタに 'static ライフタイムな参照を含めたくなるようなケースがあまりない（その場合は値そのものをフィールドにする））
   もう少し厳密にいうと、 `T: 'static` ならば、
