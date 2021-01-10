@@ -7,4 +7,4 @@ mod tests {
 }
 
 pub mod module_a; // 有効化
-mod module_b;
+pub mod module_b; // ライブラリとして作成している場合は、lib で pub をつけないと、private になるため使用できな
