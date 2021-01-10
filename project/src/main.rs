@@ -8,6 +8,7 @@ use archive::multi_thread::{
 };
 use archive::my_trait::birds::Tweet;
 use archive::test_future::{test_async_await::call_async_funcs, test_future::experiment};
+use utils::sub::{general::test_two_string_type, nested::func};
 
 fn cast_string() {
     let s1: String = String::from("Hello world");
@@ -31,7 +32,7 @@ fn use_traited_struct() {
 #[allow(dead_code)]
 fn list_dead_codes() {
     cast_string();
-    utils::nested::func();
+    func();
     archive::my_vec::test_vec();
     archive::impl_iterator::test_my_iter();
     use_traited_struct();
@@ -41,8 +42,9 @@ fn list_dead_codes() {
     msg_passing();
     experiment();
     call_async_funcs();
+    main_fn();
 }
 
 fn main() {
-    main_fn();
+    test_two_string_type();
 }
