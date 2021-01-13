@@ -11,16 +11,15 @@ RUN mkdir src
 RUN echo "fn main(){}" > src/main.rs
 RUN cargo build --release 
 
-# ビルドした生成物から、空のアプリケーションを削除
-RUN rm -f target/release/deps/todo*
-
 # 実際に必要なソースを copy してビルド
 COPY ./src ./src
 COPY ./templates ./templates
+# ビルドした生成物から、空のアプリケーションを削除
+RUN rm -f target/release/deps/todo*
 RUN cargo build --release 
 
 # 新しくリリース用のイメージを用意（実行体だけを入れる）
-FROM rust:1.43
+FROM debian:10.4
 
-COPY --from=builder /tood/target/release/todo /usr/local/bin/todo
-CMD ["todo"]
+COPY --from=builder /todo/target/release/actix_web_todo /usr/local/bin/actix_web_todo
+CMD ["actix_web_todo"]
