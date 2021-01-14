@@ -1,7 +1,6 @@
 mod logic;
 mod utils;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::prelude::*;
 use wasm_bindgen::{Clamped, JsCast};
 use web_sys::ImageData;
 
