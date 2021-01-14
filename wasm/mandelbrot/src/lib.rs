@@ -36,6 +36,21 @@ macro_rules! measure_elapsed_time {
     }};
 }
 
+#[wasm_bindgen]
+pub fn generate_mandelbrot_set(
+    canvas_w: usize,
+    canvas_h: usize,
+    x_min: f64,
+    x_max: f64,
+    y_min: f64,
+    y_max: f64,
+    max_iter: usize,
+) -> Vec<u8> {
+    measure_elapsed_time!("generate:wasm\telapsed:", {
+        logic::generate_mandelbrot_set(canvas_w, canvas_h, x_min, x_max, y_min, y_max, max_iter)
+    })
+}
+
 // wasm_bindgen アトリビュートをつけると、js から呼び出す時にグルーコードを自動生成する
 #[wasm_bindgen]
 pub fn draw_mandelbrot_set() {
@@ -66,7 +81,7 @@ pub fn draw_mandelbrot_set() {
     let mut result = measure_elapsed_time!("generate:wasm\telapsed:", {
         logic::generate_mandelbrot_set(canvas_w, canvas_h, X_MIN, X_MAX, Y_MIN, Y_MAX, MAX_ITER)
     });
-    measure_elapsed_time!("draw:was\telapsed:", {
+    measure_elapsed_time!("draw:wasm\telapsed:", {
         let data = ImageData::new_with_u8_clamped_array_and_sh(
             Clamped(&mut result),
             canvas.width(),
