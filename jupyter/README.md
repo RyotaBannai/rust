@@ -12,3 +12,8 @@
 
 - `:dep` import crates.
 - `:vars` shows all variables.
+
+### jupyter command
+
+- `jupyter notebook list` to show currently running servers.
+- stop server: `jupyter notebook stop 8888`
