@@ -7,3 +7,8 @@
 - `docker build -t qemu .`
 - run docker image above by
 - check version installed `docker run --rm qemu qemu-system-gnuarmeclipse --version`
+
+### direnv
+
+- edit: `direnv edit .`
+- `direnv allow` to allow envs
