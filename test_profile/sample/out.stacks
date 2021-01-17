@@ -1,0 +1,31 @@
+
+
+
+              sample`main
+              sample`0x1
+                1
+
+              dyld`ImageLoaderMachO::findExportedSymbol(char const*, bool, char const*, ImageLoader const**) const+0xd2
+              dyld`ImageLoaderMachO::findExportedSymbol(char const*, bool, char const*, ImageLoader const**) const+0xaf
+              dyld`ImageLoader::findExportedSymbolAddress(ImageLoader::LinkContext const&, char const*, ImageLoader const*, int, bool, ImageLoader const**, unsigned long*) const+0x2f
+              dyld`ImageLoaderMachOCompressed::resolveTwolevel(ImageLoader::LinkContext const&, char const*, ImageLoader const*, ImageLoader const*, unsigned int, bool, bool, ImageLoader const**)+0x59
+              dyld`ImageLoaderMachOCompressed::resolve(ImageLoader::LinkContext const&, char const*, unsigned char, long, ImageLoader const**, ImageLoaderMachOCompressed::LastLookup*, bool)+0x120
+              dyld`ImageLoaderMachOCompressed::doBindFastLazySymbol(unsigned int, ImageLoader::LinkContext const&, void (*)(), void (*)())+0xfa
+              dyld`dyld::fastBindLazySymbol(ImageLoader**, unsigned long)+0x56
+              libdyld.dylib`dyld_stub_binder+0x11a
+              sample`_dyld_private
+              sample`std::thread::Thread::new::h114a855bc9b6b1ba+0xe2
+              sample`std::rt::lang_start_internal::h36ccce6e8a047133+0x261
+              sample`main+0x29
+              libdyld.dylib`start+0x1
+              sample`0x1
+                1
+
+              libsystem_kernel.dylib`__sigaction+0xa
+              libsystem_c.dylib`signal__+0x42
+              sample`std::rt::lang_start_internal::h36ccce6e8a047133+0xdd
+              sample`main+0x29
+              libdyld.dylib`start+0x1
+              sample`0x1
+                1
+
