@@ -1,0 +1,26 @@
+[package]
+name = "library"
+version = "0.1.0"
+authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
+edition = "2018"
+
+[features]
+# デフォルトで有効になるフィーチャ
+default = ["parallel", "serde"]
+
+# 依存関係を持たないフィーチャ
+special = []
+
+# 依存クレートを持つフィーチャ
+parallel = ["crossbeam"]
+
+# 依存クレートのフィーチャを有効にするフィーチャ. 以下の場合 crossbeam の nightly フィーチャ
+nightly = ["crossbeam/nightly"]
+
+# 色々な依存関係を混ぜた例
+full = ["crossbeam/nightly", "parallel", "serde"]
+
+[dependencies]
+crossbeam = {version = "0.8.0", optional = true}
+# serde は dependencies に入れた内容でも、feature として使用することができる
+serde = {version = "1.0.119", optional = true}

@@ -1,0 +1,10 @@
+[package]
+name = "app"
+version = "0.1.0"
+authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+# 次の例では、serde と special feature を有効にしているため、
+# それを有効にした時に有効になるコードが有効になる
+library = {path = "../library", default-features = false, features = ["serde", "special"]}
