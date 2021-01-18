@@ -2,7 +2,6 @@
 # these configuration keys are configured by Environment variables as well.
 # for instance, alias b can be configured via CARGO_ALIAS_b=build (CARGO_ALIAS_<name> = "sub command")
 
-
 # command aliases
 [alias]
 b = "build"
