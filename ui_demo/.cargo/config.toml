@@ -1,0 +1,14 @@
+# cargo config details: https://doc.rust-lang.org/cargo/reference/config.html
+# these configuration keys are configured by Environment variables as well.
+# for instance, alias b can be configured via CARGO_ALIAS_b=build (CARGO_ALIAS_<name> = "sub command")
+
+
+# command aliases
+[alias]
+b = "build"
+r = "run"
+rr = "run --release"
+space_example = ["run", "--release", "--", "\"command list\""]
+
+[install]
+# root = "/some/path"         # `cargo install` destination directory
