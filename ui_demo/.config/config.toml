@@ -1,0 +1,10 @@
+# cargo config details: https://doc.rust-lang.org/cargo/reference/config.html
+# command aliases
+[alias]
+b = "build"
+r = "run"
+rr = "run --release"
+space_example = ["run", "--release", "--", "\"command list\""]
+
+[install]
+# root = "/some/path"         # `cargo install` destination directory
