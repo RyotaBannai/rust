@@ -18,7 +18,7 @@ macro_rules! my_vec {
 
 // *: 引数を複数個取得できるようにする
 // $()* で囲んだ範囲を繰り返し処理
-// , は、区切りとしての間まで $() にマッチした内容だけ $x から取り出せる
+// , は、区切りとしてのカンマで $() にマッチした内容だけ $x から取り出せる
 macro_rules! my_vecs {
     ($( $x: expr ),* ) => {{
         let mut temp_vec = Vec::new();
@@ -44,6 +44,14 @@ macro_rules! my_vecs_match {
     }};
 }
 
+use tomlstruct::tomlstruct;
+
+tomlstruct! {
+    struct A {
+        x: i32
+    }
+}
+
 fn main() {
     // assert_eq!(25, five_times!(2 + 3));
     // 展開後
@@ -54,4 +62,7 @@ fn main() {
     println!("{:?}", my_vecs![0, 1, 2]);
 
     println!("{:?}", my_vecs_match!(i32)); // []
+
+    let x = A { x: 0 };
+    dbg!(x.x);
 }
