@@ -61,6 +61,12 @@ use typename::{TypeName, TypeNameTrait};
 #[derive(TypeName)]
 struct Hi;
 
+use funclog::funclog;
+#[funclog]
+fn hello(){
+    println!("Hello world");
+}
+
 fn main() {
     // assert_eq!(25, five_times!(2 + 3));
     // 展開後
@@ -84,4 +90,6 @@ fn main() {
 
     let x = Hi;
     dbg!(x.type_name());
+
+    hello();
 }

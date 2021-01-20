@@ -7,3 +7,4 @@ edition = "2018"
 [dependencies]
 tomlstruct = {path = "./tomlstruct"}
 typename = {path = "./typename"}
+funclog = {path = "./funclog"}
