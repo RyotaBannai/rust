@@ -1,9 +1,8 @@
 [package]
-name = "experiment"
+name = "typename"
 version = "0.1.0"
 authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-tomlstruct = {path = "./tomlstruct"}
-typename = {path = "./typename"}
+typename_derive = {path = "../typename_derive"}
