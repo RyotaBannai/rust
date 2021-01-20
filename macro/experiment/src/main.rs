@@ -47,9 +47,13 @@ macro_rules! my_vecs_match {
 use tomlstruct::tomlstruct;
 
 tomlstruct! {
-    struct A {
-        x: i32
-    }
+    [Hello]
+    name = "hello",
+    version = 1.0
+
+    [Goodnight]
+    name = "good night",
+    version = 1.0
 }
 
 fn main() {
@@ -63,6 +67,13 @@ fn main() {
 
     println!("{:?}", my_vecs_match!(i32)); // []
 
-    let x = A { x: 0 };
-    dbg!(x.x);
+    let _ = Hello {
+        name: String::from("hello"),
+        version: 1.0,
+    };
+
+    let _ = Goodnight {
+        name: String::from("goodnight"),
+        version: 1.0,
+    };
 }
