@@ -20,3 +20,13 @@ pub fn funclog(_attr: TokenStream, item: TokenStream) -> TokenStream {
     *ast.block = block;
     ast.into_token_stream().into()
 }
+
+// trait T {}
+// struct S {}
+// impl T for S {}
+// let trait_box: Box<T> = Box::new(S {});
+// let trait_ref: &T = &trait_box; // error here
+// let trait_ref: &T = trait_box.as_ref(); // good
+
+// Box<T> implements the AsRef<T> trait
+// https://stackoverflow.com/questions/49218474/how-to-convert-a-boxed-trait-into-a-trait-reference
