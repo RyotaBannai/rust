@@ -1,0 +1,15 @@
+[package]
+name = "pyffi"
+version = "0.1.0"
+authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "string_name"
+crate-type = ["cdylib"]
+
+[dependencies]
+
+[dependencies.pyo3]
+version = "0.13.1"
+features = ["extension-module"]
