@@ -2,7 +2,10 @@ use std::panic::catch_unwind;
 
 // ナイーブな最大値と最小値の差を出力する処理
 fn print_range(x: &[i32]) {
-    let min = x.iter().min().unwrap();
+    // get an array
+    // iterate over an array with a for loop
+    // slice is just a reference of a portion of an array without copying.
+    let min = x.iter().min().unwrap(); // unwrap Some()
     let max = x.iter().max().unwrap();
     eprintln!("max - min = {}", max - min);
 }
@@ -25,4 +28,8 @@ fn main() {
             eprintln!(">success");
         }
     }
+}
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>())
 }
