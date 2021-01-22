@@ -1,5 +1,7 @@
+mod sub;
 use std::panic::catch_unwind;
 use std::thread;
+use sub::my_drop;
 
 // ナイーブな最大値と最小値の差を出力する処理
 fn print_range(x: &[i32]) {
@@ -24,7 +26,7 @@ fn test_requests() {
         // catch_unwind でエラーが起きても loop を続ける
         let result = catch_unwind(|| print_range(request));
         if let Err(_payload) = result {
-            eprintln!("***** print_range failed *****");
+            eprintln!("***** print_range fßailed *****");
         } else {
             eprintln!(">success");
         }
@@ -57,8 +59,9 @@ fn thread_has_a_panic_handling() {
 fn unused_list() {
     test_requests();
     // print_type_of();
+    thread_has_a_panic_handling();
 }
 
 fn main() {
-    thread_has_a_panic_handling();
+    sub::use_droppable();
 }
