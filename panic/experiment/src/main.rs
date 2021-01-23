@@ -26,7 +26,7 @@ fn test_requests() {
         // catch_unwind でエラーが起きても loop を続ける
         let result = catch_unwind(|| print_range(request));
         if let Err(_payload) = result {
-            eprintln!("***** print_range fßailed *****");
+            eprintln!("***** print_range failed *****");
         } else {
             eprintln!(">success");
         }
@@ -60,8 +60,9 @@ fn unused_list() {
     test_requests();
     // print_type_of();
     thread_has_a_panic_handling();
+    sub::use_droppable();
 }
 
 fn main() {
-    sub::use_droppable();
+    sub::do_over_write_panic_handler();
 }

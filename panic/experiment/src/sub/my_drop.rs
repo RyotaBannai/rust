@@ -5,6 +5,7 @@ pub struct Droppable {
 pub struct A(bool);
 
 impl Drop for Droppable {
+  // drop 処理中はスタックトレースを巻き戻している最中のため、再度 panic を起こさないようにする（２重パニック => プログラム全体を強制終了(Abort)）
   fn drop(&mut self) {
     println!("> Dropping {}", self.name)
   }
