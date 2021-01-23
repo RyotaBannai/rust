@@ -50,4 +50,5 @@ fn list_dead_codes() {
 fn main() {
     advanced::experiment::check_byte_size();
     advanced::experiment::get_pointer();
+    advanced::experiment::test_all_pointer_size_is_the_same();
 }
