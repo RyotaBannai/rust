@@ -45,10 +45,12 @@ fn list_dead_codes() {
     call_async_funcs();
     main_fn();
     test_two_string_type();
-}
-
-fn main() {
     advanced::experiment::check_byte_size();
     advanced::experiment::get_pointer();
     advanced::experiment::test_all_pointer_size_is_the_same();
+}
+
+fn main() {
+    advanced::experiment::get_pointer();
+    // advanced::experiment::check_byte_string();
 }
