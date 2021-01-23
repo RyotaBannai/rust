@@ -1,3 +1,4 @@
+mod advanced;
 mod archive;
 #[path = "result/result.rs"]
 mod result;
@@ -43,8 +44,10 @@ fn list_dead_codes() {
     experiment();
     call_async_funcs();
     main_fn();
+    test_two_string_type();
 }
 
 fn main() {
-    test_two_string_type();
+    advanced::experiment::check_byte_size();
+    advanced::experiment::get_pointer();
 }
