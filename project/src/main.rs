@@ -53,5 +53,6 @@ fn list_dead_codes() {
 fn main() {
     // advanced::sized::get_pointer();
     // advanced::sized::check_byte_string();
-    advanced::deref::test();
+    // advanced::deref::test();
+    advanced::rc::test_rc();
 }

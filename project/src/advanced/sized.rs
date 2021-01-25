@@ -86,7 +86,7 @@ pub fn check_byte_string() {
   let clos2ref: &dyn FnMut(u8) -> u8 = &clos2;
 
   let sarr: Box<St<[u16; 3]>> = Box::new(St { x: 3, y: [1, 2, 3] });
-  let sarrref = sarr.deref(); //
+  let sarrref = sarr.deref(); // or &sarr
   let sslice: Box<St<[u16]>> = Box::new(St { x: 3, y: [1, 2, 3] });
   let ssliceref = sslice.deref();
 
