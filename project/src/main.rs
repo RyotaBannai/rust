@@ -48,11 +48,11 @@ fn list_dead_codes() {
     advanced::sized::check_byte_size();
     advanced::sized::get_pointer();
     advanced::sized::test_all_pointer_size_is_the_same();
+    advanced::sized::get_pointer();
+    advanced::sized::check_byte_string();
+    advanced::deref::test();
 }
 
 fn main() {
-    // advanced::sized::get_pointer();
-    // advanced::sized::check_byte_string();
-    // advanced::deref::test();
     advanced::rc::test_rc();
 }
