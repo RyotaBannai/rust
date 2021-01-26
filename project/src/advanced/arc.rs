@@ -1,6 +1,7 @@
 use std::sync::{Arc, Mutex};
 use std::thread::spawn;
 
+// ref: http://ytyaru.hatenablog.com/entry/2020/10/15/000000
 pub fn share_data_from_multi_threads() {
   let counter = Arc::new(Mutex::new(0));
   let mut handles = vec![];

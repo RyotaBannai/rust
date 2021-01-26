@@ -327,3 +327,15 @@ fn some_great_func<'a>(arg: &'a i32) -> impl Future<Output = i32> + 'a {
 ```
 
 - しかし、スレッドをまたいで Future の値を送りたくなった際、`'static` ライフタイムを用いる必要がある。
+
+### Interior Mutability Pattern
+
+- `The interior mutability pattern`: `Mutating the value inside an immutable value`
+
+- `The borrowing rules`:
+  - At any given time, you can have either (but not both of) `one mutable reference` or `any number of immutable references`.
+  - References must always be valid.
+- Here is a recap of the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`:
+  - `Rc<T>` enables multiple owners of the same data; `Box<T>` and `RefCell<T>` have single owners.
+  - `Box<T>` allows immutable or mutable borrows checked at compile time; `Rc<T>` allows only immutable borrows checked at compile time; `RefCell<T>` allows immutable or mutable borrows checked at runtime.
+  - Because `RefCell<T>` allows mutable borrows checked at runtime, you can mutate the value inside the `RefCell<T>` even when the `RefCell<T>` is immutable.
