@@ -51,8 +51,9 @@ fn list_dead_codes() {
     advanced::sized::get_pointer();
     advanced::sized::check_byte_string();
     advanced::deref::test();
+    advanced::rc::test_rc();
 }
 
 fn main() {
-    advanced::rc::test_rc();
+    advanced::arc::share_data_from_multi_threads();
 }
