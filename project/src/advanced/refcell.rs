@@ -47,6 +47,8 @@ pub fn test_refcell() {
 mod tests {
   use super::*;
   use std::cell::RefCell;
+
+  // A mock object that can modify itself to keep track of the messages it has seen.
   struct MockMessenger {
     send_messages: RefCell<Vec<String>>, // use immutable reference as mutable
   }
@@ -61,7 +63,15 @@ mod tests {
   impl Messenger for MockMessenger {
     // send still has an immutable borrow of self
     fn send(&self, message: &str) {
-      self.send_messages.borrow_mut().push(String::from(message)); // borrow as mut
+      self.send_messages.borrow_mut().push(String::from(message));
+      // ・borrow_mut returns smart pointer type RefMut<T> (borrow returns sp type Ref<T>)
+      //
+      // let mut one_borrow = self.send_messages.borrow_mut();
+      // let mut two_borrow = self.send_messages.borrow_mut();
+      // ・Panicked at 'already borrowed: BorrowMutError' at second borrowing
+      // ・This makes two mutable references in the same scope, which isn’t allowed
+      // one_borrow.push(String::from(message));
+      // two_borrow.push(String::from(message));
     }
   }
 
@@ -70,6 +80,6 @@ mod tests {
     let mock_messenger = MockMessenger::new();
     let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
     limit_tracker.set_value(80);
-    assert_eq!(mock_messenger.send_messages.borrow().len(), 1);
+    assert_eq!(mock_messenger.send_messages.borrow().len(), 2);
   }
 }

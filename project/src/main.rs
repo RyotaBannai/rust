@@ -53,8 +53,9 @@ fn list_dead_codes() {
     advanced::deref::test();
     advanced::rc::test_rc();
     advanced::arc::share_data_from_multi_threads();
+    advanced::refcell::test_refcell();
 }
 
 fn main() {
-    advanced::refcell::test_refcell();
+    advanced::rc_refcell::test();
 }
