@@ -54,8 +54,10 @@ fn list_dead_codes() {
     advanced::rc::test_rc();
     advanced::arc::share_data_from_multi_threads();
     advanced::refcell::test_refcell();
+    advanced::rc_refcell::test();
+    advanced::memory_leak::test();
 }
 
 fn main() {
-    advanced::rc_refcell::test();
+    advanced::fix_memory_leak::test();
 }
