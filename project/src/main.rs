@@ -56,8 +56,9 @@ fn list_dead_codes() {
     advanced::refcell::test_refcell();
     advanced::rc_refcell::test();
     advanced::memory_leak::test();
+    advanced::fix_memory_leak::test();
 }
 
 fn main() {
-    advanced::fix_memory_leak::test();
+    advanced::process::general::test();
 }
