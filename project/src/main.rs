@@ -58,8 +58,9 @@ fn list_dead_codes() {
     advanced::memory_leak::test();
     advanced::fix_memory_leak::test();
     advanced::process::general::test();
+    advanced::process::command::test();
 }
 
 fn main() {
-    advanced::process::command::test();
+    advanced::process::pass_message::test();
 }
