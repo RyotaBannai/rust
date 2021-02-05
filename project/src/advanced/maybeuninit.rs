@@ -41,6 +41,13 @@ pub fn out_pointer() {
   dbg!(&v);
 }
 
+pub fn normal_out_pointer() {
+  let mut v = Vec::new();
+  make_vec(&mut v);
+  dbg!(v);
+}
+
 pub fn test() {
   out_pointer();
+  normal_out_pointer();
 }
