@@ -64,7 +64,7 @@ fn list_dead_codes() {
 }
 
 fn main() {
-    // advanced::memory::memory_allocation::test();
-    advanced::memory::bits::test();
+    advanced::memory::memory_allocation::test();
+    // advanced::memory::bits::test();
     // advanced::memory::helper::test();
 }
