@@ -2,6 +2,7 @@ pub mod arc;
 pub mod deref;
 pub mod fix_memory_leak;
 pub mod maybeuninit;
+pub mod memory;
 pub mod memory_leak;
 pub mod process;
 pub mod rc;

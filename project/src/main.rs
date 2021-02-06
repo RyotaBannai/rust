@@ -60,8 +60,11 @@ fn list_dead_codes() {
     advanced::process::general::test();
     advanced::process::command::test();
     advanced::process::pass_message::test();
+    advanced::maybeuninit::test();
 }
 
 fn main() {
-    advanced::maybeuninit::test();
+    // advanced::memory::memory_allocation::test();
+    advanced::memory::bits::test();
+    // advanced::memory::helper::test();
 }

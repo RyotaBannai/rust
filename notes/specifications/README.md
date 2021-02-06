@@ -339,3 +339,7 @@ fn some_great_func<'a>(arg: &'a i32) -> impl Future<Output = i32> + 'a {
   - `Rc<T>` enables multiple owners of the same data; `Box<T>` and `RefCell<T>` have single owners.
   - `Box<T>` allows immutable or mutable borrows checked at compile time; `Rc<T>` allows only immutable borrows checked at compile time; `RefCell<T>` allows immutable or mutable borrows checked at runtime.
   - Because `RefCell<T>` allows mutable borrows checked at runtime, you can mutate the value inside the `RefCell<T>` even when the `RefCell<T>` is immutable.
+
+### malloc/ free in Rust
+
+- [Referece](https://mmi.hatenablog.com/entry/2017/08/07/191033)
