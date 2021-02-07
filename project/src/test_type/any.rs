@@ -23,6 +23,13 @@ fn do_work<T: Any + Debug>(value: &T) {
   // do something
 }
 
+// https://stackoverflow.com/questions/55300053/what-does-mean-for-rust-slices-and-what-is-it-called
+// #![feature(core_intrinsics)]
+
+// fn print_type_of<T>(_: &T) {
+//     println!("{}", unsafe { std::intrinsics::type_name::<T>() });
+// }
+
 pub fn test() {
   let my_string = "Hello World".to_string();
   do_work(&my_string);
