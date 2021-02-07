@@ -2,6 +2,7 @@ mod advanced;
 mod archive;
 #[path = "result/result.rs"]
 mod result;
+mod test_type;
 mod utils;
 use archive::experiment::test_static::main_fn;
 use archive::multi_thread::{
@@ -61,12 +62,13 @@ fn list_dead_codes() {
     advanced::process::command::test();
     advanced::process::pass_message::test();
     advanced::maybeuninit::test();
+    // advanced::memory::memory_allocation::check_boundary();
+    // advanced::memory::memory_allocation::use_layout();
+    // advanced::memory::dynamic_allocation::use_struct();
+    // advanced::memory::bits::test();
+    // advanced::memory::helper::test();
 }
 
 fn main() {
-    // advanced::memory::memory_allocation::check_boundary();
-    // advanced::memory::memory_allocation::use_layout();
-    advanced::memory::dynamic_allocation::use_struct();
-    // advanced::memory::bits::test();
-    // advanced::memory::helper::test();
+    test_type::any::test();
 }
