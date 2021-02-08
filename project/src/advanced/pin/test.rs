@@ -28,7 +28,8 @@ pub fn test_ptr_ne() {
   let v = SelfRef::new(0);
   assert_eq!(&v.x as *const _, v.ptr);
 }
-
+// 「ムーブを許容しない型」には自分でその型マークを付ける必要がある
+// これに std::marker::PhantomPinned を使う
 struct NotUnpin {
   _pinned: PhantomPinned,
 }
@@ -40,6 +41,8 @@ impl NotUnpin {
     }
   }
 
+  // fn method(&self) = fn method(self: &Self)
+  // self を Pin として受け取った場合、それはピン留めされた参照であるため、その中身は構造体の外ではムーブされないことになる
   pub fn method(self: Pin<&mut Self>) {
     println!("Pinned!")
   }
@@ -65,7 +68,40 @@ pub fn test_pin_utils() {
   obj.as_mut().method();
 }
 
+pub fn test_tokio_pin() {
+  // tokio の pin! 使うと pin_utils と同等の処理を書くことができるが、crate サイズが大きいため tokio  を使わない時は pin_utils の方が良い.advanced
+  // use tokio::pin;
+  // pin_utils::pin_mutと同じ使い方
+  // {
+  //   let obj = NotUnpin::new();
+  //   pin!(obj);
+  //   obj.as_mut().method();
+  // }
+  // その場で変数の宣言も出来る
+  // {
+  //   pin! {
+  //       let obj = NotUnpin::new();
+  //   }
+  //   obj.as_mut().method();
+  // }
+}
+
+pub fn test_box_pin() {
+  let obj = NotUnpin::new();
+  // Box::pinによってヒープでピン留めする
+  let mut obj: Pin<Box<NotUnpin>> = Box::pin(obj);
+  // Pinになったのでメソッドを呼び出せる
+  // selfの型をPin<Box<Self>>ではなくPin<&mut Self>にしているため、obj.method()として呼び出せない
+  // 代わりにPin::as_mutを使いPin<Box<T>>からPin<&mut T>に変換して呼び出す
+  obj.as_mut().method();
+}
+
+// Rc::pin / Arc::pin
+// Rc::pin 及び Arc::pin は、Box::pin と同じく変数をヒープに固定して Pin でピン留めする。
+// 参照カウントが必要な場面で使うことになる
+
 pub fn main() {
   // これらの仕組みは全てスタックかヒープに変数を固定し、Pinにピン留めする機能
   test_pin_utils();
+  test_box_pin();
 }
