@@ -71,5 +71,7 @@ fn list_dead_codes() {
 
 fn main() {
     // test_type::any::test();
-    archive::experiment::pass_fn_asarg::main();
+    // archive::experiment::pass_fn_asarg::main();
+    // advanced::pin::test::main();
+    advanced::pin::test::main();
 }
