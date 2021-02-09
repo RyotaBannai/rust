@@ -73,5 +73,6 @@ fn main() {
     // test_type::any::test();
     // archive::experiment::pass_fn_asarg::main();
     // advanced::pin::test::main();
-    advanced::pin::test::main();
+    // advanced::pin::test::main();
+    advanced::pin::test_move::test();
 }
