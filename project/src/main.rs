@@ -75,4 +75,5 @@ fn main() {
     // advanced::pin::test::main();
     // advanced::pin::test::main();
     advanced::pin::test_move::test();
+    advanced::pin::test_move::test_not_move();
 }
