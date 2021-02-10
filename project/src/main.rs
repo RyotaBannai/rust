@@ -62,18 +62,19 @@ fn list_dead_codes() {
     advanced::process::command::test();
     advanced::process::pass_message::test();
     advanced::maybeuninit::test();
-    // advanced::memory::memory_allocation::check_boundary();
-    // advanced::memory::memory_allocation::use_layout();
-    // advanced::memory::dynamic_allocation::use_struct();
-    // advanced::memory::bits::test();
-    // advanced::memory::helper::test();
+    advanced::memory::memory_allocation::check_boundary();
+    advanced::memory::memory_allocation::use_layout();
+    advanced::memory::dynamic_allocation::use_struct();
+    advanced::memory::bits::test();
+    advanced::memory::helper::test();
+    test_type::any::test();
+    archive::experiment::pass_fn_asarg::main();
+    advanced::pin::test::main();
+    advanced::pin::test::main();
+    advanced::pin::test_move::test();
+    advanced::pin::test_move::test_not_move();
 }
 
 fn main() {
-    // test_type::any::test();
-    // archive::experiment::pass_fn_asarg::main();
-    // advanced::pin::test::main();
-    // advanced::pin::test::main();
-    advanced::pin::test_move::test();
-    advanced::pin::test_move::test_not_move();
+    advanced::pin::self_ref_struct::test();
 }
