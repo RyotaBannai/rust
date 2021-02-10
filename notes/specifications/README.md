@@ -343,3 +343,12 @@ fn some_great_func<'a>(arg: &'a i32) -> impl Future<Output = i32> + 'a {
 ### malloc/ free in Rust
 
 - [Referece](https://mmi.hatenablog.com/entry/2017/08/07/191033)
+
+### 非同期処理
+
+- そもそも、Pin は非同期プログラミングを実現するために導入されたものである。 Rust 標準では、Unpin を実装しないオブジェクトは`非同期関数の戻り値`と`非同期ブロック`のみ
+
+- 非同期関数などの「途中で中断し、再開できる関数」は CPU では表現できないため、 内部では`コルーチン`として表現され、その後コンパイラによって`ステートマシン`に変換される。 この`ステートマシン`が`自己参照構造体`になる
+
+- [ref article](https://webcache.googleusercontent.com/search?q=cache:l353ZuE0188J:https://tech-blog.optim.co.jp/entry/2020/03/05/160000+&cd=3&hl=en&ct=clnk&gl=jp)
+- [std::pin の勘所 LT](https://webcache.googleusercontent.com/search?q=cache:l353ZuE0188J:https://tech-blog.optim.co.jp/entry/2020/03/05/160000+&cd=3&hl=en&ct=clnk&gl=jp)
