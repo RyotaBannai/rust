@@ -5,6 +5,7 @@ authors = ["Ryota Bannai <ryotala0528@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+crossbeam = "0.8.0"
 futures = "0.3.8"
 nix = "0.19.1"
 owning_ref = "0.4.1"

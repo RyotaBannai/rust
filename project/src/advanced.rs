@@ -1,4 +1,5 @@
 pub mod arc;
+pub mod crossbeam;
 pub mod deref;
 pub mod fix_memory_leak;
 pub mod maybeuninit;
