@@ -352,3 +352,7 @@ fn some_great_func<'a>(arg: &'a i32) -> impl Future<Output = i32> + 'a {
 
 - [ref article](https://webcache.googleusercontent.com/search?q=cache:l353ZuE0188J:https://tech-blog.optim.co.jp/entry/2020/03/05/160000+&cd=3&hl=en&ct=clnk&gl=jp)
 - [std::pin の勘所 LT](https://webcache.googleusercontent.com/search?q=cache:l353ZuE0188J:https://tech-blog.optim.co.jp/entry/2020/03/05/160000+&cd=3&hl=en&ct=clnk&gl=jp)
+
+### Which problems does owning-ref solve?
+
+- [ref](https://users.rust-lang.org/t/which-problems-does-owning-ref-solve/29245/4?u=ryotabannai)
