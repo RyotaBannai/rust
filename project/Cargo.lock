@@ -319,6 +319,7 @@ version = "0.1.0"
 dependencies = [
  "crossbeam",
  "futures",
+ "lazy_static",
  "nix",
  "owning_ref",
  "pin-utils",

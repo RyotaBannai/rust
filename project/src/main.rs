@@ -78,5 +78,6 @@ fn list_dead_codes() {
 fn main() {
     // advanced::pin::self_ref_struct::test();
     // advanced::pin::trim::test();
-    advanced::crossbeam::demo::test();
+    // advanced::crossbeam::demo::test();
+    advanced::test_lazy_static::demo();
 }
