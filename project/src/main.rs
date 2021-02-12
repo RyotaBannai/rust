@@ -4,6 +4,7 @@ mod archive;
 mod result;
 mod test_type;
 mod utils;
+use advanced::test_lazy_static::FRUIT;
 use archive::experiment::test_static::main_fn;
 use archive::multi_thread::{
     make_spawn::make_spawn, msg_passing::msg_passing, share_memory::share_memory,
@@ -75,9 +76,19 @@ fn list_dead_codes() {
     advanced::pin::test_move::test_not_move();
 }
 
+fn read_const() {
+    FRUIT
+        .lock()
+        .unwrap()
+        .iter()
+        .enumerate()
+        .for_each(|(i, item)| println!("{}: {}", i, item));
+}
+
 fn main() {
     // advanced::pin::self_ref_struct::test();
     // advanced::pin::trim::test();
     // advanced::crossbeam::demo::test();
     advanced::test_lazy_static::demo();
+    read_const();
 }

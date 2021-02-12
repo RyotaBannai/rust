@@ -1,8 +1,10 @@
 use lazy_static::lazy_static;
 use std::sync::Mutex;
 
+// you can read global const from outside of files
+// just by add pub before const
 lazy_static! {
-  static ref FRUIT: Mutex<Vec<String>> = Mutex::new(Vec::new());
+  pub static ref FRUIT: Mutex<Vec<String>> = Mutex::new(Vec::new());
 }
 
 fn insert(fruit: &str) -> Result<(), String> {
@@ -22,11 +24,5 @@ pub fn demo() -> Result<(), String> {
       .for_each(|(i, item)| println!("{}: {}", i, item));
   }
   insert("grape")?;
-  FRUIT
-    .lock()
-    .unwrap()
-    .iter()
-    .enumerate()
-    .for_each(|(i, item)| println!("{}: {}", i, item));
   Ok(())
 }
