@@ -4,7 +4,7 @@ mod archive;
 mod result;
 mod test_type;
 mod utils;
-use advanced::test_lazy_static::FRUIT;
+use advanced::consts::test_lazy_static::{self, FRUIT};
 use archive::experiment::test_static::main_fn;
 use archive::multi_thread::{
     make_spawn::make_spawn, msg_passing::msg_passing, share_memory::share_memory,
@@ -89,6 +89,8 @@ fn main() {
     // advanced::pin::self_ref_struct::test();
     // advanced::pin::trim::test();
     // advanced::crossbeam::demo::test();
-    advanced::test_lazy_static::demo();
-    read_const();
+    //
+    // test_lazy_static::demo();
+    // read_const();
+    advanced::consts::test_once_cell::test();
 }

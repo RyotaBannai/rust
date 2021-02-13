@@ -321,6 +321,7 @@ dependencies = [
  "futures",
  "lazy_static",
  "nix",
+ "once_cell",
  "owning_ref",
  "pin-utils",
  "rental",
