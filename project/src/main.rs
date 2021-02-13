@@ -92,5 +92,6 @@ fn main() {
     //
     // test_lazy_static::demo();
     // read_const();
-    advanced::consts::test_once_cell::test();
+    // advanced::consts::test_once_cell::test();
+    advanced::crossbeam::rcv_multiple_senders::test();
 }
