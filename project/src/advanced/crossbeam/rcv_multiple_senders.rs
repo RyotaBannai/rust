@@ -1,6 +1,7 @@
 use owning_ref::StringRef;
 use std::cell::RefCell;
 use std::sync::{
+  atomic::Ordering,
   mpsc::{self, SendError, Sender},
   Arc, Mutex,
 };
@@ -29,7 +30,7 @@ enum Messages {
 #[derive(Debug)]
 struct Executor {
   count: usize,
-  handles: Arc<Mutex<RefCell<Vec<JoinHandle<()>>>>>,
+  handles: Arc<Mutex<RefCell<Vec<Option<JoinHandle<()>>>>>>,
 }
 // pass fn as args ref: https://github.com/RyotaBannai/rust/blob/0c1daf7a96f38cf2406d32a94791498c5e8d1acd/project/src/archive/experiment/pass_fn_asarg.rs#L15
 
@@ -83,10 +84,24 @@ impl Executor {
     let wait_handlers = self.handles.clone();
     wait_handlers.lock().unwrap().replace_with(|_| {
       vec![
-        thread::spawn(move || send_regularly(atx1)),
-        thread::spawn(move || send_std_input(atx2)),
+        Some(thread::spawn(move || send_regularly(atx1))),
+        Some(thread::spawn(move || send_std_input(atx2))),
       ]
     });
+    //// block threads...
+    // why Option?
+    // -> solve this: move occurs because `*handle` has type `std::thread::JoinHandle<()>`, which does not implement the `Copy` traitrustc(E0507)
+    // ref: https://stackoverflow.com/questions/57670145/how-to-store-joinhandle-of-a-thread-to-close-it-later
+    // or stop with self itself, not reference.
+
+    // for handle in &mut *wait_handlers.lock().unwrap().borrow_mut() {
+    //   // (*handle).swap(true, Ordering::Relaxed);
+    //   (*handle)
+    //     .take()
+    //     .map(JoinHandle::join)
+    //     .expect("Couldn't join my_thread on the main thread");
+    // }
+
     loop {
       match rx.recv().unwrap() {
         Messages::Count(n) => println!("counting... {}", n),
