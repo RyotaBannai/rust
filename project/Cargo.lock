@@ -329,6 +329,7 @@ name = "project"
 version = "0.1.0"
 dependencies = [
  "crossbeam",
+ "crossbeam-channel",
  "derive_more",
  "futures",
  "lazy_static",
