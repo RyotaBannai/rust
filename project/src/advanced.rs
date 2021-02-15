@@ -12,3 +12,4 @@ pub mod rc;
 pub mod rc_refcell;
 pub mod refcell;
 pub mod sized;
+pub mod test_async;
