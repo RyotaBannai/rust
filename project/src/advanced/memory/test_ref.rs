@@ -1,5 +1,9 @@
 use std::cell::{Ref, RefCell, RefMut};
 
+// ref https://www.fpcomplete.com/blog/of-course-it-compiles-right/
+// you can do few operations on RefCell and get Ref/RefMut value.
+// https://doc.rust-lang.org/nightly/core/cell/struct.Ref.html
+
 pub fn test() {
   let age: RefCell<u32> = RefCell::new(30);
   {
@@ -25,4 +29,21 @@ pub fn test() {
   //   // but returning &age.borrow() will work as known as temporary lifetime extension
   //   // https://doc.rust-lang.org/reference/destructors.html?highlight=temporary,life#temporary-lifetime-extension
   // };
+}
+
+// this errors because, hello has a reference to all_tags but in the world block
+// this tries to burrow as mut. 'when you burrow as mut reference, the reference is only one reference.'
+pub fn demo() {
+  let all_tags: RefCell<Vec<String>> = RefCell::new(Vec::new());
+  println!("Adding hello");
+  let hello: &str = {
+    all_tags.borrow_mut().push("Hello".to_string());
+    &all_tags.borrow()[0]
+  };
+  println!("Adding world");
+  let world: &str = {
+    all_tags.borrow_mut().push("World".to_string());
+    &all_tags.borrow()[0]
+  };
+  println!("{} {}", hello, world)
 }
