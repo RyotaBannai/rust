@@ -96,5 +96,6 @@ fn main() {
     // advanced::crossbeam::rcv_multiple_senders::test();
     // advanced::crossbeam::rcv_multiple_senders_cb::test();
     // advanced::test_async::tcp_server::run_server();
-    advanced::test_async::tcp_client::run_client();
+    // advanced::test_async::tcp_client::run_client();
+    advanced::memory::test_ref::test();
 }
