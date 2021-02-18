@@ -98,5 +98,6 @@ fn main() {
     // advanced::test_async::tcp_server::run_server();
     // advanced::test_async::tcp_client::run_client();
     // advanced::memory::test_ref::test();
-    advanced::memory::test_ref::demo();
+    // advanced::memory::test_ref::demo();
+    archive::oop::demo::test();
 }
