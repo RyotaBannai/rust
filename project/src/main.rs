@@ -99,5 +99,6 @@ fn main() {
     // advanced::test_async::tcp_client::run_client();
     // advanced::memory::test_ref::test();
     // advanced::memory::test_ref::demo();
-    archive::oop::demo::test();
+    // archive::oop::demo::test();
+    archive::oop::trait_object::start_gui_app();
 }
